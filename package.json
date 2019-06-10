@@ -1,0 +1,21 @@
+{
+  "name": "pub6",
+  "version": "0.0.1",
+  "description": "A publishing system for markdown",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "markdown"
+  ],
+  "author": "ccckmit",
+  "license": "MIT",
+  "dependencies": {
+    "highlight.js": "^9.15.8",
+    "js6": "^0.2.0",
+    "jsox": "^1.1.114",
+    "markdown-it": "^8.4.2",
+    "mz": "^2.7.0"
+  }
+}
