@@ -12,10 +12,15 @@
   "author": "ccckmit",
   "license": "MIT",
   "dependencies": {
+    "findit": "^2.0.0",
     "highlight.js": "^9.15.8",
     "js6": "^0.2.0",
     "jsox": "^1.1.114",
     "markdown-it": "^8.4.2",
-    "mz": "^2.7.0"
+    "markdown-it-katex": "^2.0.3",
+    "markdown-it-math": "^4.1.1",
+    "mz": "^2.7.0",
+    "puppeteer": "^1.17.0",
+    "yargs": "^13.2.4"
   }
 }

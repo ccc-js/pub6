@@ -1,4 +1,2 @@
-const pub6 = module.exports = {
-  md6: require('./md6')
-}
+module.exports = require('./pub6')
 
