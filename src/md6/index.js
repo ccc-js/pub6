@@ -64,7 +64,7 @@ M.mdToHtml = function (md) {
   if (md == null) return ''
   return mdit.render(md)
 }
-
+/*
 const htmlHead = `
 <html>
 <head>
@@ -83,13 +83,23 @@ const htmlTail = `
 </body>
 </html>
 `
-
+*/
 M.toHtml = function (md, plugin={}) {
   let r = M.parse(md), html=null
   if (r == null) return
+  console.log('plugin=%j', plugin)
   let {type, meta, body, ref} = r
   meta.abstract = meta.abstract || ''
-  html = `${htmlHead}
+  html = `
+  <html>
+  <head>
+  <meta charset="UTF-8">
+  <base href="${plugin.meta.root}/">
+  <link rel="stylesheet" type="text/css" href="main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/atom-one-light.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  </head>
+  <body>
   <title>${meta.title}</title>
   <header>
     <label class="toggle" onclick="toggleSidebar()">≡</label>
@@ -113,7 +123,11 @@ M.toHtml = function (md, plugin={}) {
   </div>
   </article>
   <footer>${M.mdToHtml(plugin.footer)}</footer>
-  ${htmlTail}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+  <script src="main.js">
+  </script>
+  </body>
+  </html>
   `
   return html
 }
@@ -216,7 +230,7 @@ M.htmlFileToPdf = async function (htmlFile, pdfFile, meta) {
 M.convertFile = async function (mdFile, options, plugin={}) {
   let { dir, base, ext, name } = path.parse(mdFile)
   var toFile = null, toText = null
-  if (ext !== '.md') return
+  if (ext !== '.md' || base.startsWith('_')) return
   try {
     console.log('  convert:%s', mdFile)
     let md = await fs6.readText(mdFile)
@@ -224,7 +238,7 @@ M.convertFile = async function (mdFile, options, plugin={}) {
     if (options.toHtml || options.toPdf) { // 轉為 html 檔
       toFile = path.join(dir, name+'.html')
       let {meta} = M.parse(md)
-      console.log('  meta.title=%s', meta.title)
+      // console.log('  meta.title=%s', meta.title)
       toText = M.convert(md, 'html', plugin)
       if (options.toHtml) await fs6.writeFile(toFile, toText)
       if (options.toPdf) { // 轉為 pdf 檔

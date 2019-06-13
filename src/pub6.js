@@ -3,6 +3,7 @@ const md6 = require('./md6')
 const fs6 = require('./fs6')
 const path = require('path')
 const uu6 = require('js6/uu6')
+const JSOX = require('jsox')
 
 let options = {toHtml:true, toPdf:false}
 
@@ -14,13 +15,18 @@ M.convertAll = async function(root)  {
       var plugins = null
       switch (type) {
         case 'folder': 
+          let parent = (stack.length > 0) ? stack[stack.length-1] : {}
           let sidebar = await fs6.readText(path.join(fpath, '_sidebar.md'))
           // console.log('sidebar=%s', sidebar)
           let header  = await fs6.readText(path.join(fpath, '_header.md'))
           let footer  = await fs6.readText(path.join(fpath, '_footer.md'))
-          plugins = uu6.defaults({sidebar, header, footer}, stack[stack.length-1])
+          let json6   = await fs6.readText(path.join(fpath, '_meta.json6'))
+          let meta    = JSOX.parse(json6||'{}')
+          meta = Object.assign(meta, parent.meta||{})
+          console.log('meta=%j', meta)
+          plugins = uu6.defaults({meta, sidebar, header, footer}, parent)
           // console.log('  plugins=%j', plugins)
-          stack.push({sidebar, header, footer})
+          stack.push({meta, sidebar, header, footer})
           await fs6.dirWalk(fpath, stack, handler)
           stack.pop()
           break
