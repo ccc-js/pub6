@@ -1,11 +1,13 @@
 ```paper
-title: "a method of xxx to do ooo",
+title: "A method of xxx to do ooo",
 abstract: "A method of xxx to do ooo with yyy. A method of xxx to do ooo with yyy. A method of xxx to do ooo with yyy. A method of xxx to do ooo with yyy. A method of xxx to do ooo with yyy. 
 A method of xxx to do ooo with yyy. A method of xxx to do ooo with yyy. 
 A method of xxx to do ooo with yyy. A method of xxx to do ooo with yyy. A method of xxx to do ooo with yyy. ",
 author: "ccc",
 keywords: "文件,期刊,xxx",
 ```
+
+# Chapter 1
 
 ## Introduction
 
@@ -14,6 +16,8 @@ see [misavo](http://misavo.com)
 ## Related Works
 
 ![](img/picture.jpg)
+
+# Chapter 2
 
 ## Our Method
 
@@ -29,6 +33,8 @@ function add(a,b) {
   return a+b
 }
 ```
+
+# Chapter 3
 
 ## Experiment
 
@@ -51,30 +57,7 @@ xxxx  | yyyy
 xxxx  | yyyy
 xxxx  | yyyy
 xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
+
 
 
 ## Conclusions

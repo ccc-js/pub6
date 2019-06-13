@@ -1,5 +1,5 @@
 ```paper
-title: "a method of xxx to do ooo",
+title: "A method of xxx to do ooo",
 abstract: "A method of xxx to do ooo with yyy. A method of xxx to do ooo with yyy. A method of xxx to do ooo with yyy. A method of xxx to do ooo with yyy. A method of xxx to do ooo with yyy. 
 A method of xxx to do ooo with yyy. A method of xxx to do ooo with yyy. 
 A method of xxx to do ooo with yyy. A method of xxx to do ooo with yyy. A method of xxx to do ooo with yyy. ",
@@ -7,17 +7,15 @@ author: "ccc",
 keywords: "文件,期刊,xxx",
 ```
 
-# Chapter 1
-
 ## Introduction
 
 see [misavo](http://misavo.com)
 
-## Related Works
+## Related Works 文獻回顧
+
+如文獻 [1](#ccc2019), [2](#kour2014fast) 所說的，....
 
 ![](img/picture.jpg)
-
-# Chapter 2
 
 ## Our Method
 
@@ -34,9 +32,9 @@ function add(a,b) {
 }
 ```
 
-# Chapter 3
-
 ## Experiment
+
+以下是實驗結果，請參考表格 1。
 
 field | value
 ------|------------
@@ -48,39 +46,7 @@ xxxx  | yyyy
 xxxx  | yyyy
 xxxx  | yyyy
 xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
-xxxx  | yyyy
+
 
 
 ## Conclusions
