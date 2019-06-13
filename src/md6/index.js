@@ -75,10 +75,10 @@ M.toHtml = function (md, plugin={}) {
   <html>
   <head>
   <meta charset="UTF-8">
-  <base href="${plugin.meta.root}/">
-  <link rel="stylesheet" type="text/css" href="main.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/atom-one-light.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <!-- <base href="${plugin.meta.root}/"> -->
+  <link rel="stylesheet" type="text/css" href="${plugin.meta.root}/main.css">
+  <link rel="stylesheet" href="${plugin.meta.root}/atom-one-light.min.css">
+  <link rel="stylesheet" href="${plugin.meta.root}/katex.min.css">
   </head>
   <body>
   <title>${meta.title}</title>
@@ -104,8 +104,8 @@ M.toHtml = function (md, plugin={}) {
   </div>
   </article>
   <footer>${M.mdToHtml(plugin.footer)}</footer>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
-  <script src="main.js">
+  <script src="${plugin.meta.root}/highlight.min.js"></script>
+  <script src="${plugin.meta.root}/main.js">
   </script>
   </body>
   </html>
