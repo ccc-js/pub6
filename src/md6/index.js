@@ -66,46 +66,48 @@ M.mdToHtml = function (md) {
 }
 
 M.toHtml = function (md, plugin={}) {
+  let {meta, sidebar, footer, header} = plugin
+  let {root} = meta
   let r = M.parse(md), html=null
   if (r == null) return
-  console.log('plugin=%j', plugin)
-  let {type, meta, body, ref} = r
-  meta.abstract = meta.abstract || ''
+  // console.log('plugin=%j', plugin)
+  let {type, meta:fileMeta, body, ref} = r
+  let {abstract, title, author} = uu6.defaults(fileMeta, {title:'', author:'', abstract:''})
   html = `
   <html>
   <head>
   <meta charset="UTF-8">
-  <!-- <base href="${plugin.meta.root}/"> -->
-  <link rel="stylesheet" type="text/css" href="${plugin.meta.root}/main.css">
-  <link rel="stylesheet" href="${plugin.meta.root}/atom-one-light.min.css">
-  <link rel="stylesheet" href="${plugin.meta.root}/katex.min.css">
+  <!-- <base href="${root}/"> -->
+  <link rel="stylesheet" type="text/css" href="${root}/main.css">
+  <link rel="stylesheet" href="${root}/atom-one-light.min.css">
+  <link rel="stylesheet" href="${root}/katex.min.css">
   </head>
   <body>
-  <title>${meta.title}</title>
+  <title>${title}</title>
   <header>
     <label class="toggle" onclick="toggleSidebar()">≡</label>
   </header>
-  <div class="booktitle">${M.mdToHtml(plugin.header)}</div>
+  <div class="booktitle">${M.mdToHtml(header)}</div>
   <aside>
   <label class="toggle" onclick="toggleSidebar()">≡</label>
   <div class="content">
-  ${M.mdToHtml(plugin.sidebar)}
+  ${M.mdToHtml(sidebar)}
   </div>
   </aside>
   <article>
   <div class="header">
-    <h1 class="title">${meta.title||''}</h1>
-    <p class="author">${meta.author||''}</p>
-    <p class="abstract">${meta.abstract.replace(/\n/g, '<br>')}</p>
+    ${(title == '')? '' : '<h1 class="title">'+title+'</h1>' }
+    ${(author == '')? '' : '<p class="author">'+author+'</p>'}
+    ${(abstract == '')? '' : '<p class="abstract">'+abstract.replace(/\n/g, '<br>')+'</p>'}
   </div>
   ${M.mdToHtml(body)}
   <div class="reference">
   ${!uu6.eq(ref, {}) ? `<h2>Reference</h2>`+M.bib2html(ref) : ''}
   </div>
   </article>
-  <footer>${M.mdToHtml(plugin.footer)}</footer>
-  <script src="${plugin.meta.root}/highlight.min.js"></script>
-  <script src="${plugin.meta.root}/main.js">
+  <footer>${M.mdToHtml(footer)}</footer>
+  <script src="${root}/highlight.min.js"></script>
+  <script src="${root}/main.js">
   </script>
   </body>
   </html>
@@ -211,7 +213,6 @@ M.htmlFileToPdf = async function (htmlFile, pdfFile, meta) {
 M.convertFile = async function (mdFile, options, plugin={}) {
   let { dir, base, ext, name } = path.parse(mdFile)
   var toFile = null, toText = null
-  if (ext !== '.md' || base.startsWith('_')) return
   try {
     console.log('  convert:%s', mdFile)
     let md = await fs6.readText(mdFile)
