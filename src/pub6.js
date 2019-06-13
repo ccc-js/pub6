@@ -33,7 +33,7 @@ async function folderVisit(fpath, stack, handler) {
   meta = Object.assign(meta, parent.meta||{})
   console.log('meta=%j', meta)
   plugins = uu6.defaults({meta, sidebar, header, footer}, parent)
-  stack.push({meta, sidebar, header, footer})
+  stack.push(plugins)
   await fs6.dirWalk(fpath, stack, handler)
   stack.pop()
 }
