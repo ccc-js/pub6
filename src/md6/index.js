@@ -64,26 +64,7 @@ M.mdToHtml = function (md) {
   if (md == null) return ''
   return mdit.render(md)
 }
-/*
-const htmlHead = `
-<html>
-<head>
-<meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="main.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/styles/atom-one-light.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
-</head>
-<body>
-`
 
-const htmlTail = `
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
-<script src="main.js">
-</script>
-</body>
-</html>
-`
-*/
 M.toHtml = function (md, plugin={}) {
   let r = M.parse(md), html=null
   if (r == null) return
@@ -113,8 +94,8 @@ M.toHtml = function (md, plugin={}) {
   </aside>
   <article>
   <div class="header">
-    <h1 class="title">${meta.title}</h1>
-    <p class="author">${meta.author}</p>
+    <h1 class="title">${meta.title||''}</h1>
+    <p class="author">${meta.author||''}</p>
     <p class="abstract">${meta.abstract.replace(/\n/g, '<br>')}</p>
   </div>
   ${M.mdToHtml(body)}
