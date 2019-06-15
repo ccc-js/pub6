@@ -1,6 +1,6 @@
-const M = module.exports = {}
-const md6 = require('./md6')
 const fs6 = require('./fs6')
+const md6 = require('./md6')
+const M = module.exports = { fs6, md6 }
 const path = require('path')
 const uu6 = require('js6/uu6')
 const JSOX = require('jsox')

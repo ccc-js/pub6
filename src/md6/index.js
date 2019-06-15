@@ -1,10 +1,13 @@
-const M = module.exports = {}
+const M = module.exports = {
+  parser: require('./mdParser')
+}
 const path = require('path')
 const JSOX = require('jsox') // JSON6 格式的 parser -- https://github.com/d3x0r/JSON6
 const hljs = require('highlight.js'); // https://highlightjs.org/
 const puppeteer = require('puppeteer')
 const fs6 = require('../fs6/')
 const uu6 = require('js6/uu6')
+
 const mdit = require('markdown-it')({
   highlight: function (str, lang) {
     if (lang && hljs.getLanguage(lang)) {
@@ -32,13 +35,15 @@ M.expand = function (text, ctx) {
   return rText
 }
 
-M.parse = function (md) { // 1   2        3                  4           5            6
-  let m = md.trim().match(/^(```(\w*)?\s*([\s\S]*?)```)?\s*([\s\S]*?)\s*(```reference([\s\S]*?)```)?$/)
+M.parse = function (md) { // 1   2        3                   4             5              6
+  let m = md.trim().match(/^(```(\w*)?\s*([\s\S]*?)\n```)?\s*([\s\S]*?)\s*?(\n```reference([\s\S]*?)```)?$/)
   if (m == null) return null
   // console.log('m=%j', m.slice(2))
   let type = (m[2]||'').trim()
   let meta = JSOX.parse('{' + (m[3]||'') + '}')
+  // console.log('meta=%j', meta)
   let body = (m[4]||'').trim()
+  // console.log('m[6]=%j', m[6])
   let ref = JSOX.parse('{' + (m[6]||'') + '}')
   return {type, meta, body, ref}
 }
@@ -97,7 +102,7 @@ M.toHtml = function (md, plugin={}) {
   <article>
   <div class="header">
     ${(title == '')? '' : '<h1 class="title">'+title+'</h1>' }
-    ${(author == '')? '' : '<p class="author">'+author+'</p>'}
+    ${(author == '')? '' : '<p class="author">'+author.replace(/\n/g, '<br>')+'</p>'}
     ${(abstract == '')? '' : '<p class="abstract">'+abstract.replace(/\n/g, '<br>')+'</p>'}
   </div>
   ${M.mdToHtml(body)}

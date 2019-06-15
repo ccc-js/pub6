@@ -1,5 +1,3 @@
-
-
 const expect = require('js6/se6').expect
 const uu6 = require('js6/uu6')
 const {md6} = require('../src')
